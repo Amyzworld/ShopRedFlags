@@ -1,906 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Red Flags & Receipts — The Drop Is Coming</title>
-
-  <meta
-    name="description"
-    content="Red Flags & Receipts is more than a store. Fashion, publishing, digital products, community, services and a whole damn company in the making."
-  />
-
-  <style>
-    :root {
-      --black: #050505;
-      --black-soft: #0d0d0d;
-      --red: #b30018;
-      --red-bright: #e00024;
-      --gold: #c8a45b;
-      --cream: #f4efe6;
-      --white: #ffffff;
-      --gray: #aaa;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--black);
-      color: var(--cream);
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .gold-line {
-      width: 70px;
-      height: 2px;
-      background: var(--gold);
-      margin: 24px auto;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 80px 24px;
-      text-align: center;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(200,164,91,.25);
-    }
-
-    .hero::before {
-      content: "RED FLAGS";
-      position: absolute;
-      top: 3%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: clamp(80px, 18vw, 280px);
-      font-weight: 900;
-      letter-spacing: -8px;
-      color: rgba(179,0,24,.08);
-      white-space: nowrap;
-      z-index: 0;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1050px;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      margin-bottom: 26px;
-      font-weight: 700;
-    }
-
-    h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(52px, 8vw, 120px);
-      line-height: .88;
-      text-transform: uppercase;
-      letter-spacing: -3px;
-      color: var(--white);
-    }
-
-    h1 span {
-      color: var(--red-bright);
-    }
-
-    .hero-sub {
-      max-width: 780px;
-      margin: 32px auto 0;
-      font-size: clamp(19px, 2.2vw, 30px);
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.4;
-    }
-
-    .hero-small {
-      max-width: 700px;
-      margin: 20px auto 0;
-      color: #bbb;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 18px 34px;
-      border: 1px solid var(--gold);
-      background: transparent;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: .3s ease;
-    }
-
-    .cta:hover {
-      background: var(--red);
-      border-color: var(--red);
-      transform: translateY(-2px);
-    }
-
-    /* SECTIONS */
-
-    .section {
-      position: relative;
-      padding: 110px 24px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      overflow: hidden;
-    }
-
-    .inner {
-      width: min(1100px, 100%);
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-number {
-      position: absolute;
-      right: 4%;
-      top: 20px;
-      font-family: Georgia, serif;
-      font-size: clamp(110px, 18vw, 260px);
-      color: rgba(179,0,24,.11);
-      line-height: 1;
-      font-weight: 700;
-      z-index: 0;
-    }
-
-    .label {
-      color: var(--gold);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(40px, 5.4vw, 76px);
-      line-height: 1;
-      color: var(--white);
-      max-width: 880px;
-      margin-bottom: 30px;
-    }
-
-    h2 .red {
-      color: var(--red-bright);
-    }
-
-    .lead {
-      font-family: Georgia, serif;
-      font-size: clamp(21px, 2.4vw, 31px);
-      line-height: 1.5;
-      max-width: 850px;
-      margin-bottom: 28px;
-    }
-
-    .copy {
-      max-width: 800px;
-      font-size: 17px;
-      line-height: 1.85;
-      color: #c6c6c6;
-    }
-
-    /* TAG GRID */
-
-    .tag-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 45px;
-    }
-
-    .tag {
-      border: 1px solid rgba(200,164,91,.35);
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 18px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 12px;
-      font-weight: 700;
-      transition: .3s ease;
-      background: rgba(255,255,255,.015);
-    }
-
-    .tag:hover {
-      border-color: var(--red-bright);
-      background: rgba(179,0,24,.12);
-      transform: translateY(-3px);
-    }
-
-    /* FEATURE BLOCK */
-
-    .dark-red {
-      background:
-        linear-gradient(135deg, rgba(179,0,24,.15), transparent 60%),
-        var(--black-soft);
-    }
-
-    .quote-section {
-      background: var(--red);
-      color: white;
-      text-align: center;
-      padding: 110px 24px;
-    }
-
-    .quote-section blockquote {
-      max-width: 1100px;
-      margin: 0 auto;
-      font-family: Georgia, serif;
-      font-size: clamp(36px, 6vw, 88px);
-      line-height: 1;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    /* RESUME */
-
-    .resume-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      margin-top: 45px;
-      border-top: 1px solid rgba(200,164,91,.3);
-      border-left: 1px solid rgba(200,164,91,.3);
-    }
-
-    .resume-item {
-      padding: 24px;
-      border-right: 1px solid rgba(200,164,91,.3);
-      border-bottom: 1px solid rgba(200,164,91,.3);
-      font-family: Georgia, serif;
-      font-size: 18px;
-      transition: .25s ease;
-    }
-
-    .resume-item:hover {
-      background: var(--red);
-      color: white;
-    }
-
-    /* FINAL */
-
-    .final {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 24px;
-      position: relative;
-    }
-
-    .final-inner {
-      max-width: 950px;
-    }
-
-    .final h2 {
-      margin: 0 auto;
-      font-size: clamp(55px, 9vw, 120px);
-    }
-
-    .final-copy {
-      max-width: 700px;
-      margin: 30px auto 0;
-      color: #bbb;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .email-form {
-      display: flex;
-      max-width: 600px;
-      margin: 42px auto 0;
-      border: 1px solid var(--gold);
-    }
-
-    .email-form input {
-      flex: 1;
-      border: 0;
-      outline: 0;
-      padding: 18px;
-      background: transparent;
-      color: white;
-      font-size: 15px;
-      min-width: 0;
-    }
-
-    .email-form input::placeholder {
-      color: #777;
-    }
-
-    .email-form button {
-      border: 0;
-      cursor: pointer;
-      padding: 18px 26px;
-      background: var(--red);
-      color: white;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 700;
-      font-size: 11px;
-    }
-
-    .email-form button:hover {
-      background: var(--red-bright);
-    }
-
-    #formMessage {
-      margin-top: 16px;
-      font-size: 14px;
-      color: var(--gold);
-      min-height: 20px;
-    }
-
-    footer {
-      border-top: 1px solid rgba(200,164,91,.25);
-      padding: 40px 24px;
-      text-align: center;
-      color: #777;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* REVEAL */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity .8s ease, transform .8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 850px) {
-      .tag-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .resume-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .section {
-        padding: 85px 22px;
-      }
-    }
-
-    @media (max-width: 540px) {
-      .tag-grid,
-      .resume-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        letter-spacing: -1px;
-      }
-
-      .email-form {
-        flex-direction: column;
-        border: none;
-        gap: 10px;
-      }
-
-      .email-form input {
-        border: 1px solid var(--gold);
-      }
-
-      .email-form button {
-        width: 100%;
-      }
-
-      .hero::before {
-        letter-spacing: -4px;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Red Flags & Receipts</title>
+<style>
+:root{
+  --black:#050505;
+  --red:#b5121b;
+  --gold:#c9a454;
+  --white:#ffffff;
+  --muted:#d7cfc4;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(201,164,84,.10),transparent 38%),
+    #050505;
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{text-decoration:none;color:inherit}
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+}
+.wrap{
+  width:min(1120px,94%);
+  text-align:center;
+}
+.brand{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,6vw,76px);
+  line-height:.95;
+}
+.intro{
+  margin:16px auto 34px;
+  color:#d8d0c5;
+  font-size:17px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.card{
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:left;
+  padding:28px;
+  border:1px solid rgba(201,164,84,.55);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00)),
+    #0d0d0d;
+  transition:.25s ease;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  background:#121212;
+}
+.card .num{
+  color:var(--red);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:auto;
+}
+.card h2{
+  margin:0 0 8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:34px;
+  line-height:1;
+}
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.45;
+}
+.arrow{
+  margin-top:18px;
+  color:var(--gold);
+  font-size:20px;
+}
+.note{
+  margin-top:28px;
+  color:#777;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .page{padding:34px 16px}
+  .grid{grid-template-columns:1fr}
+  .card{min-height:190px}
+  .intro{font-size:15px}
+}
+</style>
 </head>
-
 <body>
 
-  <!-- HERO -->
+<main class="page">
+  <div class="wrap">
 
-  <section class="hero">
-    <div class="hero-inner reveal">
-      <div class="eyebrow">Red Flags & Receipts</div>
+    <div class="brand">Red Flags & Receipts</div>
+    <h1>WHERE WOULD YOU LIKE TO GO?</h1>
+    <p class="intro">Choose your next move.</p>
 
-      <h1>
-        The Drop<br>
-        Is <span>Coming.</span>
-      </h1>
+    <div class="grid">
 
-      <div class="gold-line"></div>
+      <a class="card" href="LINK_SHOP_PAGE" target="_top">
+        <div class="num">01</div>
+        <h2>Shop</h2>
+        <p>Wear the message</p>
+        <div class="arrow">→</div>
+      </a>
 
-      <p class="hero-sub">
-        Turns out, building an entire company takes a little longer
-        than setting a countdown.
-      </p>
+      <a class="card" href="LINK_RECEIPTS_PAGE" target="_top">
+        <div class="num">02</div>
+        <h2>Receipts</h2>
+        <p>Make sense of what happened</p>
+        <div class="arrow">→</div>
+      </a>
 
-      <p class="hero-small">
-        I thought I was launching a website.
-        Then I accidentally built a fashion brand, a publishing arm,
-        a digital library, a community, a service business and an entire
-        ecosystem around it.
-      </p>
+      <a class="card" href="LINK_COMMUNITY_PAGE" target="_top">
+        <div class="num">03</div>
+        <h2>Community</h2>
+        <p>Find your people</p>
+        <div class="arrow">→</div>
+      </a>
 
-      <a href="#what-i-built" class="cta">See What I've Been Building</a>
+      <a class="card" href="LINK_FOUNDATION_PAGE" target="_top">
+        <div class="num">04</div>
+        <h2>Foundation</h2>
+        <p>Turn awareness into action</p>
+        <div class="arrow">→</div>
+      </a>
+
     </div>
-  </section>
 
+    <div class="note">Same Girl. Higher Standards.</div>
 
-  <!-- INTRO -->
-
-  <section class="section dark-red" id="what-i-built">
-    <div class="section-number">01</div>
-
-    <div class="inner reveal">
-      <div class="label">The Reality</div>
-
-      <h2>
-        I wasn't building a website.
-        <span class="red">I was building a company.</span>
-      </h2>
-
-      <p class="lead">
-        And I underestimated just how many jobs are hiding behind the words
-        “launch an e-commerce brand.”
-      </p>
-
-      <p class="copy">
-        The original countdown was simple. The work behind it wasn't.
-        Every collection, page, product, image, piece of copy, digital
-        product, customer journey and business decision had to become part
-        of one coherent world.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- BRAND -->
-
-  <section class="section">
-    <div class="section-number">02</div>
-
-    <div class="inner reveal">
-      <div class="label">Brand Building</div>
-
-      <h2>I built the <span class="red">brand.</span></h2>
-
-      <p class="lead">
-        Not just a logo. A point of view.
-      </p>
-
-      <div class="tag-grid">
-        <div class="tag">Brand Strategy</div>
-        <div class="tag">Visual Identity</div>
-        <div class="tag">Creative Direction</div>
-        <div class="tag">Brand Voice</div>
-        <div class="tag">Campaign Concepts</div>
-        <div class="tag">Collection Strategy</div>
-        <div class="tag">Customer Experience</div>
-        <div class="tag">Editorial Direction</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ECOM -->
-
-  <section class="section dark-red">
-    <div class="section-number">03</div>
-
-    <div class="inner reveal">
-      <div class="label">Commerce</div>
-
-      <h2>
-        Then I built the
-        <span class="red">store.</span>
-      </h2>
-
-      <p class="lead">
-        Which is really about 40 different jobs wearing one trench coat.
-      </p>
-
-      <div class="tag-grid">
-        <div class="tag">Product Concepts</div>
-        <div class="tag">Apparel</div>
-        <div class="tag">Accessories</div>
-        <div class="tag">Home Goods</div>
-        <div class="tag">Pricing</div>
-        <div class="tag">Merchandising</div>
-        <div class="tag">Product Photography</div>
-        <div class="tag">Product Descriptions</div>
-        <div class="tag">Collections</div>
-        <div class="tag">Product Pages</div>
-        <div class="tag">Mobile Layouts</div>
-        <div class="tag">Checkout Flow</div>
-        <div class="tag">Wix</div>
-        <div class="tag">Shopify</div>
-        <div class="tag">Vercel</div>
-        <div class="tag">Optimization</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- PUBLISHING -->
-
-  <section class="section">
-    <div class="section-number">04</div>
-
-    <div class="inner reveal">
-      <div class="label">Publishing</div>
-
-      <h2>
-        Apparently clothes weren't
-        <span class="red">enough.</span>
-      </h2>
-
-      <p class="lead">
-        So I started building a publishing company too.
-      </p>
-
-      <p class="copy">
-        Original ebooks. Journals. Workbooks. Crosswords. Games.
-        Relationship resources. Printables. Digital downloads.
-        Intellectual property designed to live inside the larger
-        Red Flags & Receipts universe.
-      </p>
-
-      <div class="tag-grid">
-        <div class="tag">Ebooks</div>
-        <div class="tag">Journals</div>
-        <div class="tag">Workbooks</div>
-        <div class="tag">Crosswords</div>
-        <div class="tag">Games</div>
-        <div class="tag">Printables</div>
-        <div class="tag">Digital Library</div>
-        <div class="tag">Original IP</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- RECEIPTS ROOM -->
-
-  <section class="section dark-red">
-    <div class="section-number">05</div>
-
-    <div class="inner reveal">
-      <div class="label">The Experience</div>
-
-      <h2>
-        Then I built
-        <span class="red">a room.</span>
-      </h2>
-
-      <p class="lead">
-        Because apparently a normal FAQ page wasn't ambitious enough.
-      </p>
-
-      <p class="copy">
-        The Receipts Room became part help desk, part digital experience,
-        part resource center and part world-building. Distinct personalities
-        can welcome visitors, answer questions, guide people through the site
-        and connect them with the right resources.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- COMMUNITY -->
-
-  <section class="section">
-    <div class="section-number">06</div>
-
-    <div class="inner reveal">
-      <div class="label">Community</div>
-
-      <h2>
-        Then came the
-        <span class="red">Red Flag Society.</span>
-      </h2>
-
-      <p class="lead">
-        Because this was never supposed to be just another online store.
-      </p>
-
-      <div class="tag-grid">
-        <div class="tag">Wednesday Coffee</div>
-        <div class="tag">Events</div>
-        <div class="tag">Meetups</div>
-        <div class="tag">Groups</div>
-        <div class="tag">Community</div>
-        <div class="tag">Member Experiences</div>
-        <div class="tag">Offline Connection</div>
-        <div class="tag">The Society</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SERVICES -->
-
-  <section class="section dark-red">
-    <div class="section-number">07</div>
-
-    <div class="inner reveal">
-      <div class="label">Services</div>
-
-      <h2>
-        Then I built the
-        <span class="red">service side.</span>
-      </h2>
-
-      <div class="tag-grid">
-        <div class="tag">1:1 Sessions</div>
-        <div class="tag">Group Sessions</div>
-        <div class="tag">Programs</div>
-        <div class="tag">Packages</div>
-        <div class="tag">Resources</div>
-        <div class="tag">Customer Pathways</div>
-        <div class="tag">Community Support</div>
-        <div class="tag">Education</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- FOUNDATION -->
-
-  <section class="section">
-    <div class="section-number">08</div>
-
-    <div class="inner reveal">
-      <div class="label">The Bigger Picture</div>
-
-      <h2>
-        And there is a
-        <span class="red">Foundation.</span>
-      </h2>
-
-      <p class="lead">
-        Because if the business grows, I want some of that growth to actually
-        mean something.
-      </p>
-
-      <p class="copy">
-        Giving back isn't being added later because it looks good.
-        It is being considered as part of the architecture from the beginning.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- TECH -->
-
-  <section class="section dark-red">
-    <div class="section-number">09</div>
-
-    <div class="inner reveal">
-      <div class="label">Technology</div>
-
-      <h2>
-        Oh yeah.
-        <span class="red">I built the website too.</span>
-      </h2>
-
-      <div class="tag-grid">
-        <div class="tag">HTML</div>
-        <div class="tag">CSS</div>
-        <div class="tag">Responsive Design</div>
-        <div class="tag">Navigation</div>
-        <div class="tag">Landing Pages</div>
-        <div class="tag">Forms</div>
-        <div class="tag">Countdowns</div>
-        <div class="tag">Page Speed</div>
-        <div class="tag">Image Compression</div>
-        <div class="tag">Mobile Optimization</div>
-        <div class="tag">Integrations</div>
-        <div class="tag">Calls To Action</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- QUOTE -->
-
-  <section class="quote-section reveal">
-    <blockquote>
-      This isn't a website.
-      <br>
-      It's the beginning of a company.
-    </blockquote>
-  </section>
-
-
-  <!-- RESUME -->
-
-  <section class="section">
-    <div class="section-number">10</div>
-
-    <div class="inner reveal">
-      <div class="label">The Unofficial Résumé</div>
-
-      <h2>
-        One founder.
-        <span class="red">A ridiculous number of jobs.</span>
-      </h2>
-
-      <div class="resume-grid">
-        <div class="resume-item">Founder</div>
-        <div class="resume-item">Creative Director</div>
-        <div class="resume-item">Brand Strategist</div>
-        <div class="resume-item">E-Commerce Manager</div>
-        <div class="resume-item">Web Designer</div>
-        <div class="resume-item">Product Developer</div>
-        <div class="resume-item">Merchandiser</div>
-        <div class="resume-item">Copywriter</div>
-        <div class="resume-item">Author</div>
-        <div class="resume-item">Publisher</div>
-        <div class="resume-item">Digital Product Developer</div>
-        <div class="resume-item">Content Director</div>
-        <div class="resume-item">Community Builder</div>
-        <div class="resume-item">Program Designer</div>
-        <div class="resume-item">Marketing Director</div>
-        <div class="resume-item">Campaign Director</div>
-        <div class="resume-item">Social Media Manager</div>
-        <div class="resume-item">Customer Experience Designer</div>
-        <div class="resume-item">Tech Support</div>
-        <div class="resume-item">Quality Control</div>
-        <div class="resume-item">Professional Button Mover</div>
-        <div class="resume-item">Chief Why-Isn't-This-Working Officer</div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- COUNTDOWN EXPLANATION -->
-
-  <section class="section dark-red">
-    <div class="section-number">11</div>
-
-    <div class="inner reveal">
-      <div class="label">About That Countdown</div>
-
-      <h2>
-        Why isn't there another
-        <span class="red">clock?</span>
-      </h2>
-
-      <p class="lead">
-        Because I'm not putting another arbitrary timer on something I've
-        worked this hard to build.
-      </p>
-
-      <p class="copy">
-        It launches when it's right.
-        Not perfect. Not finished forever. But right.
-        Red Flags & Receipts is being built to become something much bigger
-        than a single drop.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- FINAL -->
-
-  <section class="final">
-    <div class="final-inner reveal">
-      <div class="label">Red Flags & Receipts</div>
-
-      <h2>
-        I built the
-        <span class="red">damn thing.</span>
-      </h2>
-
-      <p class="final-copy">
-        The doors are opening soon.
-        Leave your email and you'll be one of the first to know when they do.
-      </p>
-
-      <form class="email-form" id="notifyForm">
-        <input
-          id="email"
-          type="email"
-          placeholder="YOUR EMAIL"
-          required
-        />
-
-        <button type="submit">
-          Notify Me
-        </button>
-      </form>
-
-      <div id="formMessage"></div>
-    </div>
-  </section>
-
-
-  <footer>
-    Red Flags & Receipts © 2026
-  </footer>
-
-
-  <script>
-    // Scroll reveal animation
-    const reveals = document.querySelectorAll(".reveal");
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      {
-        threshold: 0.12
-      }
-    );
-
-    reveals.forEach(item => observer.observe(item));
-
-
-    // Temporary email form behavior
-    // Replace this with Wix / Mailchimp / Klaviyo / ConvertKit integration later.
-
-    const form = document.getElementById("notifyForm");
-    const email = document.getElementById("email");
-    const message = document.getElementById("formMessage");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      if (!email.value) {
-        message.textContent = "Enter your email first.";
-        return;
-      }
-
-      message.textContent =
-        "You're on the list. We'll let you know when the doors open.";
-
-      form.reset();
-    });
-  </script>
+  </div>
+</main>
 
 </body>
 </html>
