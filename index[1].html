@@ -1,56 +1,170 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://base44.com/logo_v2.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>Red Flags &amp; Receipts</title>
-
-    <!-- Google Analytics (GA4) — replace G-XXXXXXXXXX with your Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', { send_page_view: false });
-    </script>
-    <script type="module" crossorigin src="/assets/index-Cru0txLU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DcuYHBHQ.css">
-    <script type="module">
-if (window.self === window.top) {
-  let lastPath = "";
-  function getPageNameFromPath(path) {
-    const segments = path.split("/").filter(Boolean);
-    return segments[0] || null;
-  }
-  function trackPageView() {
-    const path = window.location.pathname;
-    if (path === lastPath) return;
-    lastPath = path;
-    const pageName = getPageNameFromPath(path) || "home";
-    const appId = "";
-    if (!appId) return;
-    fetch(`/api/app-logs/${appId}/log-user-in-app/${pageName}`, {
-      method: "POST",
-    }).catch(() => {});
-  }
-  const originalPushState = history.pushState.bind(history);
-  history.pushState = function (...args) {
-    originalPushState(...args);
-    trackPageView();
-  };
-  const originalReplaceState = history.replaceState.bind(history);
-  history.replaceState = function (...args) {
-    originalReplaceState(...args);
-    trackPageView();
-  };
-  window.addEventListener("popstate", trackPageView);
-  trackPageView();
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Red Flags & Receipts</title>
+<style>
+:root{
+  --black:#050505;
+  --red:#b5121b;
+  --gold:#c9a454;
+  --white:#ffffff;
+  --muted:#d7cfc4;
 }
-</script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(201,164,84,.10),transparent 38%),
+    #050505;
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+}
+a{text-decoration:none;color:inherit}
+.page{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 20px;
+}
+.wrap{
+  width:min(1120px,94%);
+  text-align:center;
+}
+.brand{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(42px,6vw,76px);
+  line-height:.95;
+}
+.intro{
+  margin:16px auto 34px;
+  color:#d8d0c5;
+  font-size:17px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.card{
+  min-height:260px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:left;
+  padding:28px;
+  border:1px solid rgba(201,164,84,.55);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00)),
+    #0d0d0d;
+  transition:.25s ease;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  background:#121212;
+}
+.card .num{
+  color:var(--red);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:auto;
+}
+.card h2{
+  margin:0 0 8px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:34px;
+  line-height:1;
+}
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.45;
+}
+.arrow{
+  margin-top:18px;
+  color:var(--gold);
+  font-size:20px;
+}
+.note{
+  margin-top:28px;
+  color:#777;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .page{padding:34px 16px}
+  .grid{grid-template-columns:1fr}
+  .card{min-height:190px}
+  .intro{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+  <div class="wrap">
+
+    <div class="brand">Red Flags & Receipts</div>
+    <h1>WHERE WOULD YOU LIKE TO GO?</h1>
+    <p class="intro">Choose your next move.</p>
+
+    <div class="grid">
+
+      <a class="card" href="LINK_SHOP_PAGE" target="_top">
+        <div class="num">01</div>
+        <h2>Shop</h2>
+        <p>Wear the message</p>
+        <div class="arrow">→</div>
+      </a>
+
+      <a class="card" href="LINK_RECEIPTS_PAGE" target="_top">
+        <div class="num">02</div>
+        <h2>Receipts</h2>
+        <p>Make sense of what happened</p>
+        <div class="arrow">→</div>
+      </a>
+
+      <a class="card" href="LINK_COMMUNITY_PAGE" target="_top">
+        <div class="num">03</div>
+        <h2>Community</h2>
+        <p>Find your people</p>
+        <div class="arrow">→</div>
+      </a>
+
+      <a class="card" href="LINK_FOUNDATION_PAGE" target="_top">
+        <div class="num">04</div>
+        <h2>Foundation</h2>
+        <p>Turn awareness into action</p>
+        <div class="arrow">→</div>
+      </a>
+
+    </div>
+
+    <div class="note">Same Girl. Higher Standards.</div>
+
+  </div>
+</main>
+
+</body>
 </html>
