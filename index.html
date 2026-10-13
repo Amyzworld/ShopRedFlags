@@ -5,166 +5,136 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Red Flags & Receipts</title>
 <style>
-:root{
-  --black:#050505;
-  --red:#b5121b;
-  --gold:#c9a454;
-  --white:#ffffff;
-  --muted:#d7cfc4;
-}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(201,164,84,.10),transparent 38%),
-    #050505;
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-}
-a{text-decoration:none;color:inherit}
-.page{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:48px 20px;
-}
-.wrap{
-  width:min(1120px,94%);
-  text-align:center;
-}
-.brand{
-  color:var(--gold);
-  text-transform:uppercase;
-  letter-spacing:.28em;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:14px;
-}
-h1{
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(42px,6vw,76px);
-  line-height:.95;
-}
-.intro{
-  margin:16px auto 34px;
-  color:#d8d0c5;
-  font-size:17px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-.card{
-  min-height:260px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  text-align:left;
-  padding:28px;
-  border:1px solid rgba(201,164,84,.55);
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00)),
-    #0d0d0d;
-  transition:.25s ease;
-}
-.card:hover{
-  transform:translateY(-5px);
-  border-color:var(--gold);
-  background:#121212;
-}
-.card .num{
-  color:var(--red);
-  font-size:11px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  font-weight:800;
-  margin-bottom:auto;
-}
-.card h2{
-  margin:0 0 8px;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:34px;
-  line-height:1;
-}
-.card p{
-  margin:0;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.45;
-}
-.arrow{
-  margin-top:18px;
-  color:var(--gold);
-  font-size:20px;
-}
-.note{
-  margin-top:28px;
-  color:#777;
-  font-size:11px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
+body{background:#050505;color:#fff;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif}
 
-@media(max-width:900px){
-  .grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:560px){
-  .page{padding:34px 16px}
-  .grid{grid-template-columns:1fr}
-  .card{min-height:190px}
-  .intro{font-size:15px}
+/* Header */
+.hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#050505;border-bottom:1px solid #222}
+.lg{font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:8px}
+.lg i{width:10px;height:14px;background:#d8141f;display:inline-block;clip-path:polygon(0 0,100% 20%,70% 50%,100% 80%,0 100%)}
+.ct{width:38px;height:38px;border-radius:50%;background:#e9e9e9;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,box-shadow .2s;border:0}
+.ct:hover{background:#fff;box-shadow:0 0 0 3px #d8141f55}
+.ct:active{background:#ccc}
+.ct:focus-visible,.chip:focus-visible,.card:focus-visible,.qa:focus-visible,.hero a:focus-visible{outline:2px solid #d8141f;outline-offset:2px}
+
+/* Hero */
+.hero{position:relative;padding:22px 16px 20px;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,5,.15) 0%,rgba(5,5,5,.55) 55%,#050505 100%);z-index:1}
+.hero>*:not(img){position:relative;z-index:2}
+.br{font-size:11px;font-weight:900;letter-spacing:.28em;text-transform:uppercase;color:#d8141f;margin-bottom:10px;animation:up .7s cubic-bezier(.2,.8,.2,1) both}
+h1{margin:0;font-size:44px;line-height:1;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;animation:up .7s .12s cubic-bezier(.2,.8,.2,1) both}
+.in{margin:12px 0 0;font-size:15px;font-weight:600;color:#e4e4e4;animation:up .7s .24s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Chips */
+.chips{display:flex;gap:8px;padding:6px 16px 16px;animation:up .7s .36s cubic-bezier(.2,.8,.2,1) both}
+.chip{flex:1;text-align:center;padding:10px 0;border-radius:999px;background:#1a1a1a;color:#fff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border:1px solid #2c2c2c;cursor:pointer;transition:background .2s,color .2s,border-color .2s;text-decoration:none}
+.chip:first-child{background:#d8141f;border-color:#d8141f}
+.chip:hover{background:#fff;color:#050505;border-color:#fff}
+.chip:active{opacity:.85}
+
+/* Grid */
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.card{background:#ececec;color:#050505;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;cursor:pointer;transition:box-shadow .25s,background .25s;animation:up .7s both cubic-bezier(.2,.8,.2,1)}
+.card:nth-child(1){animation-delay:.45s}.card:nth-child(2){animation-delay:.55s}.card:nth-child(3){animation-delay:.65s}.card:nth-child(4){animation-delay:.75s}
+.card:hover{background:#fff;box-shadow:0 8px 22px rgba(216,20,31,.35)}
+.card:active{background:#ddd}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#ddd}
+.cb{padding:12px 12px 14px;display:flex;flex-direction:column;flex:1}
+.num{font-size:10px;font-weight:900;letter-spacing:.18em;color:#d8141f;margin-bottom:6px}
+.card h2{margin:0 0 4px;font-size:22px;line-height:1.05;font-weight:900;text-transform:uppercase}
+.card p{margin:0;font-size:13px;line-height:1.35;font-weight:600;color:#444;flex:1}
+.qa{margin-top:12px;display:flex;align-items:center;justify-content:space-between;background:#050505;color:#fff;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;transition:background .2s}
+.card:hover .qa{background:#d8141f}
+.qa b{font-size:16px;color:#fff;font-weight:900}
+
+/* Marquee */
+.mq{margin-top:26px;border-top:1px solid #222;border-bottom:1px solid #222;background:#d8141f;overflow:hidden;white-space:nowrap}
+.mt{display:inline-block;padding:12px 0;font-size:14px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;animation:mq 14s linear infinite}
+.mt span{padding:0 22px}
+
+/* Footer */
+.ft{padding:22px 16px 28px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a}
+
+/* Responsive: wider screens expand grid */
+@media(min-width:768px){
+  .gr{grid-template-columns:repeat(4,1fr);max-width:1120px;margin:0 auto}
+  .hero{min-height:420px}
+  h1{font-size:56px}
 }
 </style>
 </head>
 <body>
 
-<main class="page">
-  <div class="wrap">
+<div class="hd">
+  <div class="lg"><i></i>Red Flags &amp; Receipts</div>
+  <button class="ct" aria-label="cart">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#050505" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 4h3l2.4 11.2a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.5L21 8H7"/>
+      <circle cx="10" cy="20.5" r="1.3" fill="#050505"/>
+      <circle cx="18" cy="20.5" r="1.3" fill="#050505"/>
+    </svg>
+  </button>
+</div>
 
-    <div class="brand">Red Flags & Receipts</div>
-    <h1>WHERE WOULD YOU LIKE TO GO?</h1>
-    <p class="intro">Choose your next move.</p>
+<div class="hero">
+  <img src="https://media.base44.com/images/public/6ace5d7c92d65e776071aba2/19f1dac7c_generated_b89c2bc1.jpg" alt="Model wearing the red flag tee">
+  <h1>WHERE WOULD YOU LIKE TO GO?</h1>
+  <p class="in">Choose your next move.</p>
+</div>
 
-    <div class="grid">
+<div class="chips">
+  <a class="chip" href="LINK_SHOP_PAGE">Shop</a>
+  <a class="chip" href="LINK_RECEIPTS_PAGE">Receipts</a>
+  <a class="chip" href="LINK_COMMUNITY_PAGE">Community</a>
+  <a class="chip" href="LINK_FOUNDATION_PAGE">Foundation</a>
+</div>
 
-      <a class="card" href="LINK_SHOP_PAGE" target="_top">
-        <div class="num">01</div>
-        <h2>Shop</h2>
-        <p>Wear the message</p>
-        <div class="arrow">→</div>
-      </a>
-
-      <a class="card" href="LINK_RECEIPTS_PAGE" target="_top">
-        <div class="num">02</div>
-        <h2>Receipts</h2>
-        <p>Make sense of what happened</p>
-        <div class="arrow">→</div>
-      </a>
-
-      <a class="card" href="LINK_COMMUNITY_PAGE" target="_top">
-        <div class="num">03</div>
-        <h2>Community</h2>
-        <p>Find your people</p>
-        <div class="arrow">→</div>
-      </a>
-
-      <a class="card" href="LINK_FOUNDATION_PAGE" target="_top">
-        <div class="num">04</div>
-        <h2>Foundation</h2>
-        <p>Turn awareness into action</p>
-        <div class="arrow">→</div>
-      </a>
-
+<div class="gr">
+  <a class="card" href="LINK_SHOP_PAGE" target="_top">
+    <img src="https://media.base44.com/images/public/6ace5d7c92d65e776071aba2/78b07b606_generated_b05378fe.jpg" alt="Black graphic tee with red flag print">
+    <div class="cb">
+      <div class="num">01</div>
+      <h2>Shop</h2>
+      <p>Wear the message</p>
+      <div class="qa"><span>Go</span><b>&rarr;</b></div>
     </div>
+  </a>
+  <a class="card" href="LINK_RECEIPTS_PAGE" target="_top">
+    <img src="https://media.base44.com/images/public/6ace5d7c92d65e776071aba2/2017ee7e7_generated_74daa8f4.jpg" alt="Cream hoodie with red flag embroidery">
+    <div class="cb">
+      <div class="num">02</div>
+      <h2>Receipts</h2>
+      <p>Make sense of what happened</p>
+      <div class="qa"><span>Go</span><b>&rarr;</b></div>
+    </div>
+  </a>
+  <a class="card" href="LINK_COMMUNITY_PAGE" target="_top">
+    <img src="https://media.base44.com/images/public/6ace5d7c92d65e776071aba2/c97ec992f_generated_06e2fbdd.jpg" alt="Black cap with red flag stitching">
+    <div class="cb">
+      <div class="num">03</div>
+      <h2>Community</h2>
+      <p>Find your people</p>
+      <div class="qa"><span>Go</span><b>&rarr;</b></div>
+    </div>
+  </a>
+  <a class="card" href="LINK_FOUNDATION_PAGE" target="_top">
+    <img src="https://media.base44.com/images/public/6ace5d7c92d65e776071aba2/c26a24755_generated_cdeb6fc1.jpg" alt="Red crewneck sweatshirt">
+    <div class="cb">
+      <div class="num">04</div>
+      <h2>Foundation</h2>
+      <p>Turn awareness into action</p>
+      <div class="qa"><span>Go</span><b>&rarr;</b></div>
+    </div>
+  </a>
+</div>
 
-    <div class="note">Same Girl. Higher Standards.</div>
+<div class="mq"><div class="mt"><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span></div></div>
 
-  </div>
-</main>
+<div class="ft">Same Girl. Higher Standards.</div>
 
 </body>
 </html>
