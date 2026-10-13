@@ -59,9 +59,31 @@ h1{margin:0;font-size:44px;line-height:1;font-weight:900;text-transform:uppercas
 /* Footer */
 .ft{padding:22px 16px 28px;text-align:center;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a}
 
+/* Shop Section */
+.shop{padding:30px 16px 10px}
+.shop-h{margin-bottom:18px}
+.shop-h h2{font-size:28px;font-weight:900;text-transform:uppercase;margin:0 0 4px}
+.shop-h p{font-size:13px;color:#8a8a8a;margin:0}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pcard{background:#ececec;color:#050505;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s,background .25s;animation:up .7s both cubic-bezier(.2,.8,.2,1)}
+.pcard:hover{background:#fff;box-shadow:0 8px 22px rgba(216,20,31,.35)}
+.pcard img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:#ddd}
+.pinfo{padding:12px 12px 14px;display:flex;flex-direction:column;flex:1}
+.pinfo h3{margin:0 0 4px;font-size:16px;line-height:1.1;font-weight:900;text-transform:uppercase}
+.pmeta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.price{font-size:18px;font-weight:900}
+.stock{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px}
+.stock.in{background:#d8141f;color:#fff}
+.stock.out{background:#333;color:#999}
+.buy{display:block;text-align:center;background:#050505;color:#fff;border-radius:999px;padding:10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;transition:background .2s;margin-top:auto}
+.buy:hover{background:#d8141f}
+.buy.soldout{background:#666;cursor:not-allowed;opacity:.6;pointer-events:none}
+.no-products{grid-column:1/-1;text-align:center;padding:30px;color:#8a8a8a;font-size:13px}
+
 /* Responsive: wider screens expand grid */
 @media(min-width:768px){
   .gr{grid-template-columns:repeat(4,1fr);max-width:1120px;margin:0 auto}
+  .pgrid{grid-template-columns:repeat(4,1fr);max-width:1120px;margin:0 auto}
   .hero{min-height:420px}
   h1{font-size:56px}
 }
@@ -132,9 +154,48 @@ h1{margin:0;font-size:44px;line-height:1;font-weight:900;text-transform:uppercas
   </a>
 </div>
 
+<div class="shop">
+  <div class="shop-h">
+    <h2>SHOP THE DROP</h2>
+    <p>Live inventory from our Shopify store</p>
+  </div>
+  <div id="products" class="pgrid">
+    <div class="no-products">Loading products...</div>
+  </div>
+</div>
+
 <div class="mq"><div class="mt"><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span><span>Same Girl. Higher Standards.</span></div></div>
 
 <div class="ft">Same Girl. Higher Standards.</div>
+
+<script>
+fetch('/api/products').then(r=>r.json()).then(data=>{
+  const c=document.getElementById('products');
+  if(!data.products||data.products.length===0){
+    c.innerHTML='<div class="no-products">'+(data.error||'Products coming soon. Connect your Shopify store to see live inventory.')+'</div>';
+    return;
+  }
+  c.innerHTML=data.products.map(function(p){
+    var soldout=!p.available;
+    var buyUrl='https://'+data.shopDomain+'/cart/'+p.variantId+':1';
+    return '<div class="pcard">'+
+      '<img src="'+(p.image||'')+'" alt="'+p.title+'">'+
+      '<div class="pinfo">'+
+        '<h3>'+p.title+'</h3>'+
+        '<div class="pmeta">'+
+          '<span class="price">$'+p.price+'</span>'+
+          (soldout?'<span class="stock out">Sold Out</span>':'<span class="stock in">In Stock</span>')+
+        '</div>'+
+        (soldout
+          ?'<span class="buy soldout">Sold Out</span>'
+          :'<a class="buy" href="'+buyUrl+'" target="_top">Buy Now</a>')+
+      '</div>'+
+    '</div>';
+  }).join('');
+}).catch(function(){
+  document.getElementById('products').innerHTML='<div class="no-products">Unable to load products. Check back soon.</div>';
+});
+</script>
 
 </body>
 </html>

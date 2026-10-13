@@ -2,5 +2,18 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "SHOPIFY_SHOP_DOMAIN",
+      "description": "Your Shopify store domain (e.g., your-store.myshopify.com)",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    },
+    {
+      "name": "SHOPIFY_ACCESS_TOKEN",
+      "description": "Shopify Admin API access token — generate from Shopify Admin > Settings > Apps > Develop apps > Create custom app with read_products and inventory scopes",
+      "requiredAtBoot": false,
+      "generatedForDevelopment": false
+    }
+  ]
 }
